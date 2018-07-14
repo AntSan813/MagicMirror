@@ -23,8 +23,10 @@ Module.register("newsfeed",{
 		showDescription: false,
 		wrapTitle: true,
 		wrapDescription: true,
+		truncDescription: true,
+		lengthDescription: 400,
 		hideLoading: false,
-		reloadInterval:  5 * 60 * 1000, // every 5 minutes
+		reloadInterval: 5 * 60 * 1000, // every 5 minutes
 		updateInterval: 10 * 1000,
 		animationSpeed: 2.5 * 1000,
 		maxNewsItems: 0, // 0 for unlimited
@@ -33,8 +35,9 @@ Module.register("newsfeed",{
 		removeStartTags: "",
 		removeEndTags: "",
 		startTags: [],
-		endTags: []
-
+		endTags: [],
+		prohibitedWords: [],
+		scrollLength: 500
 	},
 
 	// Define required scripts.
@@ -60,6 +63,7 @@ Module.register("newsfeed",{
 		this.newsItems = [];
 		this.loaded = false;
 		this.activeItem = 0;
+		this.scrollPosition = 0;
 
 		this.registerFeeds();
 
@@ -168,7 +172,8 @@ Module.register("newsfeed",{
 			if (this.config.showDescription) {
 				var description = document.createElement("div");
 				description.className = "small light" + (!this.config.wrapDescription ? " no-wrap" : "");
-				description.innerHTML = this.newsItems[this.activeItem].description;
+				var txtDesc = this.newsItems[this.activeItem].description;
+				description.innerHTML = (this.config.truncDescription ? (txtDesc.length > this.config.lengthDescription ? txtDesc.substring(0, this.config.lengthDescription) + "..." : txtDesc) : txtDesc);
 				wrapper.appendChild(description);
 			}
 
@@ -176,12 +181,14 @@ Module.register("newsfeed",{
 				var fullArticle = document.createElement("iframe");
 				fullArticle.className = "";
 				fullArticle.style.width = "100%";
+				// very large height value to allow scrolling
+				fullArticle.height = "10000";
+				fullArticle.style.height = "10000";
 				fullArticle.style.top = "0";
 				fullArticle.style.left = "0";
-				fullArticle.style.position = "fixed";
-				fullArticle.height = window.innerHeight;
 				fullArticle.style.border = "none";
-				fullArticle.src = this.newsItems[this.activeItem].url;
+				fullArticle.src = typeof this.newsItems[this.activeItem].url  === "string" ? this.newsItems[this.activeItem].url : this.newsItems[this.activeItem].url.href;
+				fullArticle.style.zIndex = 1;
 				wrapper.appendChild(fullArticle);
 			}
 
@@ -241,6 +248,18 @@ Module.register("newsfeed",{
 		if(this.config.maxNewsItems > 0) {
 			newsItems = newsItems.slice(0, this.config.maxNewsItems);
 		}
+
+		if(this.config.prohibitedWords.length > 0) {
+			newsItems = newsItems.filter(function(value){
+				for (var i=0; i < this.config.prohibitedWords.length; i++) {
+					if (value["title"].toLowerCase().indexOf(this.config.prohibitedWords[i].toLowerCase()) > -1) {
+						return false;
+					}
+				}
+				return true;
+			}, this);
+		}
+
 		this.newsItems = newsItems;
 	},
 
@@ -306,6 +325,10 @@ Module.register("newsfeed",{
 	resetDescrOrFullArticleAndTimer: function() {
 		this.config.showDescription = false;
 		this.config.showFullArticle = false;
+		this.scrollPosition = 0;
+		// reset bottom bar alignment
+		document.getElementsByClassName("region bottom bar")[0].style.bottom = "0";
+		document.getElementsByClassName("region bottom bar")[0].style.top = "inherit";
 		if(!timer){
 			this.scheduleUpdateInterval();
 		}
@@ -334,12 +357,27 @@ Module.register("newsfeed",{
 		}
 		// if "more details" is received the first time: show article summary, on second time show full article
 		else if(notification == "ARTICLE_MORE_DETAILS"){
-			this.config.showDescription = !this.config.showDescription;
-			this.config.showFullArticle = !this.config.showDescription;
-			clearInterval(timer);
-			timer = null;
-			Log.info(this.name + " - showing " + this.config.showDescription ? "article description" : "full article");
-			this.updateDom(100);
+			// full article is already showing, so scrolling down
+			if(this.config.showFullArticle == true){
+				this.scrollPosition += this.config.scrollLength;
+				window.scrollTo(0, this.scrollPosition);
+				Log.info(this.name + " - scrolling down");
+				Log.info(this.name + " - ARTICLE_MORE_DETAILS, scroll position: " + this.config.scrollLength);
+			}
+			// display full article
+			else {
+				this.config.showDescription = !this.config.showDescription;
+				this.config.showFullArticle = !this.config.showDescription;
+				// make bottom bar align to top to allow scrolling
+				if(this.config.showFullArticle == true){
+					document.getElementsByClassName("region bottom bar")[0].style.bottom = "inherit";
+					document.getElementsByClassName("region bottom bar")[0].style.top = "-90px";
+				}
+				clearInterval(timer);
+				timer = null;
+				Log.info(this.name + " - showing " + this.config.showDescription ? "article description" : "full article");
+				this.updateDom(100);
+			}
 		} else if(notification == "ARTICLE_LESS_DETAILS"){
 			this.resetDescrOrFullArticleAndTimer();
 			Log.info(this.name + " - showing only article titles again");

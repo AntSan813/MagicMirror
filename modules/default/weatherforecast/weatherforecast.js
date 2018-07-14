@@ -21,6 +21,7 @@ Module.register("weatherforecast",{
 		animationSpeed: 1000,
 		timeFormat: config.timeFormat,
 		lang: config.language,
+		decimalSymbol: ".",
 		fade: true,
 		fadePoint: 0.25, // Start on 1/4th of the list.
 		colored: false,
@@ -30,7 +31,7 @@ Module.register("weatherforecast",{
 		retryDelay: 2500,
 
 		apiVersion: "2.5",
-		apiBase: "http://api.openweathermap.org/data/",
+		apiBase: "https://api.openweathermap.org/data/",
 		forecastEndpoint: "forecast/daily",
 
 		appendLocationNameToHeader: true,
@@ -155,13 +156,17 @@ Module.register("weatherforecast",{
 				}
 			}
 
+			if (this.config.decimalSymbol === "" || this.config.decimalSymbol === " ") {
+				this.config.decimalSymbol = ".";
+			}
+
 			var maxTempCell = document.createElement("td");
-			maxTempCell.innerHTML = forecast.maxTemp + degreeLabel;
+			maxTempCell.innerHTML = forecast.maxTemp.replace(".", this.config.decimalSymbol) + degreeLabel;
 			maxTempCell.className = "align-right bright max-temp";
 			row.appendChild(maxTempCell);
 
 			var minTempCell = document.createElement("td");
-			minTempCell.innerHTML = forecast.minTemp + degreeLabel;
+			minTempCell.innerHTML = forecast.minTemp.replace(".", this.config.decimalSymbol) + degreeLabel;
 			minTempCell.className = "align-right min-temp";
 			row.appendChild(minTempCell);
 
@@ -254,7 +259,6 @@ Module.register("weatherforecast",{
 
 					if (self.config.forecastEndpoint == "forecast/daily") {
 						self.config.forecastEndpoint = "forecast";
-						self.config.maxNumberOfDays = self.config.maxNumberOfDays * 8;
 						Log.warn(self.name + ": Your AppID does not support long term forecasts. Switching to fallback endpoint.");
 					}
 
@@ -293,12 +297,6 @@ Module.register("weatherforecast",{
 
 		params += "&units=" + this.config.units;
 		params += "&lang=" + this.config.lang;
-		/*
-		 * Submit a specific number of days to forecast, between 1 to 16 days.
-		 * The OpenWeatherMap API properly handles values outside of the 1 - 16 range and returns 7 days by default.
-		 * This is simply being pedantic and doing it ourselves.
-		 */
-		params += "&cnt=" + (((this.config.maxNumberOfDays < 1) || (this.config.maxNumberOfDays > 16)) ? 7 * 8 : this.config.maxNumberOfDays);
 		params += "&APPID=" + this.config.appid;
 
 		return params;
@@ -349,6 +347,11 @@ Module.register("weatherforecast",{
 
 				this.forecast.push(forecastData);
 				lastDay = day;
+
+				// Stop processing when maxNumberOfDays is reached
+				if (this.forecast.length === this.config.maxNumberOfDays) {
+					break;
+				}
 			} else {
 				//Log.log("Compare max: ", forecast.temp.max, parseFloat(forecastData.maxTemp));
 				forecastData.maxTemp = forecast.temp.max > parseFloat(forecastData.maxTemp) ? this.roundValue(forecast.temp.max) : forecastData.maxTemp;
