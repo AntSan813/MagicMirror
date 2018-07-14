@@ -1,7 +1,7 @@
 /**
  *
- * The given selector will return true or false whether or not an `<option>` or `<input>` element of type
- * checkbox or radio is currently selected.
+ * Return true or false if an `<option>` element, or an `<input>` element of type
+ * checkbox or radio is currently selected found by given selector.
  *
  * <example>
     :index.html

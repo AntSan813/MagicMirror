@@ -1,8 +1,9 @@
 /**
  *
  * This wait command is your universal weapon if you want to wait on something. It expects a condition
- * and waits until that condition is fulfilled with a truthy value. If you use the WDIO testrunner the
- * commands within the condition are getting executed synchronously like in your test.
+ * and waits until that condition is fulfilled with a truthy value. A condition can be either a promise
+ * or a command result. The commands within the condition are getting executed synchronously like in
+ * your test.
  *
  * A common example is to wait until a certain element contains a certain text (see example).
  *
@@ -25,23 +26,19 @@
  *
  *
  * @alias browser.waitUntil
- * @param {Function} condition  condition to wait on
- * @param {Number=}  timeout    timeout in ms (default: 500)
- * @param {String=}  timeoutMsg error message to throw when waitUntil times out
- * @param {Number=}  interval   interval between condition checks (default: 500)
+ * @param {Function|Promise} condition  condition to wait on
+ * @param {Number=}          timeout    timeout in ms (default: 500)
+ * @param {String=}          timeoutMsg error message to throw when waitUntil times out
+ * @param {Number=}          interval   interval between condition checks (default: 500)
  * @uses utility/pause
  * @type utility
  *
  */
 
-import { WaitUntilTimeoutError, CommandError } from '../utils/ErrorHandler'
+import { WaitUntilTimeoutError } from '../utils/ErrorHandler'
 import Timer from '../utils/Timer'
 
 export default function (condition, timeout, timeoutMsg, interval) {
-    if (typeof condition !== 'function') {
-        throw new CommandError('invalid argument')
-    }
-
     /*!
      * ensure that timeout and interval are set properly
      */
@@ -53,7 +50,14 @@ export default function (condition, timeout, timeoutMsg, interval) {
         interval = this.options.waitforInterval
     }
 
-    const fn = condition.bind(this)
+    let fn
+
+    if (typeof condition === 'function') {
+        fn = condition.bind(this)
+    } else {
+        fn = () => Promise.resolve(condition)
+    }
+
     let isSync = this.options.sync
     let timer = new Timer(interval, timeout, fn, true, isSync)
 

@@ -1,15 +1,15 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = timeoutsAsyncScript;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var _deprecationWarning = require('../helpers/deprecationWarning');
+var _depcrecationWarning = require('../helpers/depcrecationWarning');
 
-var _deprecationWarning2 = _interopRequireDefault(_deprecationWarning);
+var _depcrecationWarning2 = _interopRequireDefault(_depcrecationWarning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,9 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * by /session/:sessionId/execute_async are permitted to run before they are
  * aborted and a |Timeout| error is returned to the client.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`timeouts`](http://webdriver.io/api/protocol/timeouts.html) command instead.
+ * Deprecated! Please use the `timeouts` command instead.
  *
  * @see https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtimeoutsasync_script
  *
@@ -32,14 +30,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 function timeoutsAsyncScript(ms) {
-    /*!
-     * parameter check
-     */
-    if (typeof ms !== 'number') {
-        throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with timeoutsAsyncScript protocol command');
-    }
+  /*!
+   * parameter check
+   */
+  if (typeof ms !== 'number') {
+    throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with timeoutsAsyncScript protocol command');
+  }
 
-    (0, _deprecationWarning2.default)('timeoutsAsyncScript', this.options.deprecationWarnings, 'This command is not part of the W3C WebDriver spec and won\'t be supported in ' + 'future versions of the driver. It is recommended to use the timeout command for this.');
-    return this.requestHandler.create('/session/:sessionId/timeouts/async_script', { ms });
+  (0, _depcrecationWarning2.default)('timeoutsAsyncScript');
+  return this.requestHandler.create('/session/:sessionId/timeouts/async_script', { ms: ms });
 }
 module.exports = exports['default'];

@@ -1,7 +1,6 @@
 /**
  *
- * Select option with displayed text matching the argument.
-
+ * Select option which's displayed text matches the argument.
  *
  * <example>
     :example.html
@@ -54,9 +53,8 @@ let selectByVisibleText = function (selector, text) {
         if (/"/.test(text)) {
             formatted = 'concat("' + text.trim().split('"').join('", \'"\', "') + '")' // escape quotes
         }
-        /* eslint-disable no-irregular-whitespace */
-        var normalized = `[normalize-space(translate(., ' ', '')) = ${formatted}]`
-        /* eslint-enable no-irregular-whitespace */
+
+        var normalized = `[normalize-space(.) = ${formatted}]`
         return this.elementIdElement(res.value.ELEMENT, `./option${normalized}|./optgroup/option${normalized}`)
     }).then((res) => {
         /**

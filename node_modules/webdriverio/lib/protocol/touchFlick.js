@@ -1,10 +1,6 @@
 /**
  * Flick on the touch screen using finger motion events. This flick command starts
- * at a particular screen location.
- *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`touchPerform`](http://webdriver.io/api/mobile/touchPerform.html) command instead.
+ * at a particular screen location. Depcrecated! Please use `touchPerform` instead.
  *
  * @param {String} ID      ID of the element where the flick starts
  * @param {Number} xoffset the x offset in pixels to flick by
@@ -13,12 +9,10 @@
  *
  * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtouchflick
  * @type protocol
- * @deprecated
  *
  */
 
 import { ProtocolError } from '../utils/ErrorHandler'
-import deprecate from '../helpers/deprecationWarning'
 
 export default function touchFlick (id, xoffset, yoffset, speed) {
     let data = {}
@@ -35,13 +29,6 @@ export default function touchFlick (id, xoffset, yoffset, speed) {
     } else {
         throw new ProtocolError('number or type of arguments don\'t agree with touchFlick command')
     }
-
-    deprecate(
-        'touchFlick',
-        this.options.deprecationWarnings,
-        'This command is not part of the W3C WebDriver spec and won\'t be supported in ' +
-        'future versions of the driver. It is recommended to use the touchAction command for this.'
-    )
 
     return this.requestHandler.create('/session/:sessionId/touch/flick', data)
 }

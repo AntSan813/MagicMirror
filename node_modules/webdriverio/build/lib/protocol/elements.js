@@ -20,11 +20,28 @@ var _hasElementResultHelper = require('../helpers/hasElementResultHelper');
 
 var _hasElementResultHelper2 = _interopRequireDefault(_hasElementResultHelper);
 
-var _constants = require('../helpers/constants');
-
 var _ErrorHandler = require('../utils/ErrorHandler');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ *
+ * Search for multiple elements on the page, starting from the document root. The located
+ * elements will be returned as a WebElement JSON objects. The table below lists the
+ * locator strategies that each server should support. Elements should be returned in
+ * the order located in the DOM.
+ *
+ * The array of elements can be retrieved  using the 'response.value' which is a
+ * collection of element ID's and can be accessed in the subsequent commands
+ * using the '.ELEMENT' method.
+ *
+ * @param {String} selector selector to query the elements
+ * @return {Object[]} A list of WebElement JSON objects for the located elements.
+ *
+ * @see  https://w3c.github.io/webdriver/webdriver-spec.html#find-elements
+ * @type protocol
+ *
+ */
 
 var elements = function elements(selector) {
     var requestPath = '/session/:sessionId/elements';
@@ -70,7 +87,7 @@ var elements = function elements(selector) {
 
             var elem = lastPromise.value.value.ELEMENT;
             relative = true;
-            requestPath = `/session/:sessionId/element/${elem}/elements`;
+            requestPath = '/session/:sessionId/element/' + elem + '/elements';
         }
     }
 
@@ -87,10 +104,10 @@ var elements = function elements(selector) {
          * are supported.
          */
         result.value = result.value.map(function (elem) {
-            var elemValue = elem.ELEMENT || elem[_constants.W3C_ELEMENT_ID];
+            var elemValue = elem.ELEMENT || elem['element-6066-11e4-a52e-4f735466cecf'];
             return {
                 ELEMENT: elemValue,
-                [_constants.W3C_ELEMENT_ID]: elemValue
+                'element-6066-11e4-a52e-4f735466cecf': elemValue
             };
         });
 
@@ -102,24 +119,7 @@ var elements = function elements(selector) {
 
         throw err;
     });
-}; /**
-    *
-    * Search for multiple elements on the page, starting from the document root. The located
-    * elements will be returned as a WebElement JSON objects. The table below lists the
-    * locator strategies that each server should support. Elements should be returned in
-    * the order located in the DOM.
-    *
-    * The array of elements can be retrieved  using the 'response.value' which is a
-    * collection of element ID's and can be accessed in the subsequent commands
-    * using the '.ELEMENT' method.
-    *
-    * @param {String} selector selector to query the elements
-    * @return {Object[]} A list of WebElement JSON objects for the located elements.
-    *
-    * @see  https://w3c.github.io/webdriver/webdriver-spec.html#find-elements
-    * @type protocol
-    *
-    */
+};
 
 exports.default = elements;
 module.exports = exports['default'];

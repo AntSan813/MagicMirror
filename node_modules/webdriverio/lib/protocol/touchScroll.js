@@ -2,9 +2,7 @@
  * Scroll on the touch screen using finger based motion events. If
  * element ID is given start scrolling at a particular screen location.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`touchPerform`](http://webdriver.io/api/mobile/touchPerform.html) command instead.
+ * Depcrecated! Please use `touchPerform` instead.
  *
  * @param {String} id       the element where the scroll starts.
  * @param {Number} xoffset  in pixels to scroll by
@@ -12,12 +10,11 @@
  *
  * @see https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtouchscroll
  * @type protocol
- * @deprecated
+ * @depcrecated
  *
  */
 
 import { ProtocolError } from '../utils/ErrorHandler'
-import deprecate from '../helpers/deprecationWarning'
 
 export default function touchScroll (id, xoffset, yoffset) {
     let data = {}
@@ -45,13 +42,6 @@ export default function touchScroll (id, xoffset, yoffset) {
     } else {
         throw new ProtocolError('number or type of arguments don\'t agree with touchScroll command')
     }
-
-    deprecate(
-        'touchScroll',
-        this.options.deprecationWarnings,
-        'This command is not part of the W3C WebDriver spec and won\'t be supported in ' +
-        'future versions of the driver. It is recommended to use the touchAction command for this.'
-    )
 
     return this.requestHandler.create('/session/:sessionId/touch/scroll', data)
 }

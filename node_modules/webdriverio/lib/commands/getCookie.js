@@ -33,7 +33,7 @@
 
 let getCookie = function (name) {
     /*!
-     * parameter check
+     * paramter check
      */
     if (typeof name !== 'string') {
         name = null

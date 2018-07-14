@@ -10,7 +10,7 @@ exports.default = getAppStrings;
  *
  * @param {String} language  strings language code
  *
- * @see  https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/other/appium-bindings.md#app-strings
+ * @see  https://github.com/appium/appium/blob/master/docs/en/appium-bindings.md#app-strings
  * @type mobile
  * @for android
  *
@@ -22,6 +22,6 @@ function getAppStrings(language) {
         method: 'POST'
     };
 
-    return this.requestHandler.create(requestOptions, { language });
+    return this.requestHandler.create(requestOptions, { language: language });
 }
 module.exports = exports['default'];

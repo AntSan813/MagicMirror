@@ -8,12 +8,12 @@ Object.defineProperty(exports, "__esModule", {
  * Retrieve the current window handle.
  *
  * <example>
-    :getCurrentTabId.js
+    :getCurrenteTabId.js
     it('should return the current tab id', function () {
         browser.url('http://webdriver.io')
 
         var tabId = browser.getCurrentTabId()
-        console.log(tabId)
+        console.log(tabid)
         // outputs something like the following:
         // "CDwindow-C43FB686-949D-4232-828B-583398FBD0C0"
     })

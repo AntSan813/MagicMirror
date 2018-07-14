@@ -23,9 +23,6 @@ exports.default = toggleTouchIdEnrollment;
  *
  */
 function toggleTouchIdEnrollment() {
-    return this.requestHandler.create({
-        path: '/session/:sessionId/appium/simulator/toggle_touch_id_enrollment',
-        method: 'POST'
-    });
+    return this.requestHandler.create('session/:session_id/appium/simulator/toggle_touch_id_enrollment');
 }
 module.exports = exports['default'];

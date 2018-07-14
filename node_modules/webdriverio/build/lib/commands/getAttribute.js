@@ -63,7 +63,7 @@ var getAttribute = function getAttribute(selector, attributeName) {
     });
 }; /**
     *
-    * Get an attribute from a DOM-element based on the selector and attribute name.
+    * Get an attribute from an DOM-element based on the selector and attribute name.
     * Returns a list of attribute values if selector matches multiple elements.
     *
     * <example>

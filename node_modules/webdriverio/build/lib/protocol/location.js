@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = location;
 
-var _deprecationWarning = require('../helpers/deprecationWarning');
+var _depcrecationWarning = require('../helpers/depcrecationWarning');
 
-var _deprecationWarning2 = _interopRequireDefault(_deprecationWarning);
+var _depcrecationWarning2 = _interopRequireDefault(_depcrecationWarning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,7 +18,7 @@ function location(l) {
         location = l;
     }
 
-    (0, _deprecationWarning2.default)('location', this.options.deprecationWarnings, 'This command is not part of the W3C WebDriver spec and won\'t be supported in ' + 'future versions of the driver. There is currently no known replacement for this ' + 'action.');
+    (0, _depcrecationWarning2.default)('location');
 
     /**
      * get geo location
@@ -31,13 +31,10 @@ function location(l) {
      * set geo location
      * @type {[type]}
      */
-    return this.requestHandler.create('/session/:sessionId/location', { location });
+    return this.requestHandler.create('/session/:sessionId/location', { location: location });
 } /**
    *
-   * Protocol bindings for all geolocation operations.
-   *
-   * This command is deprecated and will be removed soon. Make sure you don't use it in your
-   * automation/test scripts anymore to avoid errors.
+   * Protocol bindings for all geolocation operations. (Not part of the official Webdriver specification).
    *
    * <example>
       :location.js
@@ -55,7 +52,6 @@ function location(l) {
    *
    * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlocation
    * @type protocol
-   * @deprecated
    *
    */
 

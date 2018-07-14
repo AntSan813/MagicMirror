@@ -11,6 +11,8 @@
  *
  */
 
+import depcrecate from '../helpers/depcrecationWarning'
+
 export default function context (id) {
     const data = {}
     const requestOptions = {
@@ -23,5 +25,6 @@ export default function context (id) {
         data.name = id
     }
 
+    depcrecate('context')
     return this.requestHandler.create(requestOptions, data)
 }

@@ -4,9 +4,7 @@
  * upper-left corner of the page. The element's coordinates are returned as a
  * JSON object with x and y properties.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`elementIdRect`](http://webdriver.io/api/protocol/elementIdRect.html) command instead.
+ * Depcrecated command, please use [`elementIdRect`](http://webdriver.io/api/protocol/elementIdRect.html).
  *
  * @param {String} ID ID of a WebElement JSON object to route the command to
  * @return {Object} The X and Y coordinates for the element on the page (`{x:number, y:number}`)

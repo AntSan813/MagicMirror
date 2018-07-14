@@ -69,7 +69,7 @@ var addValue = function addValue(selector, value) {
     * Add a value to an object found by given selector. You can also use unicode
     * characters like Left arrow or Back space. WebdriverIO will take care of
     * translating them into unicode characters. You’ll find all supported characters
-    * [here](https://w3c.github.io/webdriver/webdriver-spec.html#keyboard-actions).
+    * [here](https://w3c.github.io/webdriver/webdriver-spec.html#dfn-character-types).
     * To do that, the value has to correspond to a key from the table.
     *
     * <example>

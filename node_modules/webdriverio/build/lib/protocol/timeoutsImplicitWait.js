@@ -1,15 +1,15 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = timeoutsImplicitWait;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var _deprecationWarning = require('../helpers/deprecationWarning');
+var _depcrecationWarning = require('../helpers/depcrecationWarning');
 
-var _deprecationWarning2 = _interopRequireDefault(_deprecationWarning);
+var _depcrecationWarning2 = _interopRequireDefault(_depcrecationWarning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,27 +22,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * If this command is never sent, the driver should default to an implicit wait of 0ms.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`timeouts`](http://webdriver.io/api/protocol/timeouts.html) command instead.
+ * Depcrecated! Please use the `timeouts` command instead.
  *
  * @param {Number} ms   The amount of time to wait, in milliseconds. This value has a lower bound of 0.
  *
  * @see https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtimeoutsimplicit_wait
  * @type protocol
- * @deprecated
  *
  */
 
 function timeoutsImplicitWait(ms) {
-    /*!
-     * parameter check
-     */
-    if (typeof ms !== 'number') {
-        throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with timeoutsImplicitWait protocol command');
-    }
+  /*!
+   * parameter check
+   */
+  if (typeof ms !== 'number') {
+    throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with timeoutsImplicitWait protocol command');
+  }
 
-    (0, _deprecationWarning2.default)('timeoutsImplicitWait', this.options.deprecationWarnings, 'This command is not part of the W3C WebDriver spec and won\'t be supported in ' + 'future versions of the driver. It is recommended to use the timeout command for this.');
-    return this.requestHandler.create('/session/:sessionId/timeouts/implicit_wait', { ms });
+  (0, _depcrecationWarning2.default)('timeoutsImplicitWait');
+  return this.requestHandler.create('/session/:sessionId/timeouts/implicit_wait', { ms: ms });
 }
 module.exports = exports['default'];

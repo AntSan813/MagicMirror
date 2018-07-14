@@ -7,15 +7,14 @@
  * @see  https://w3c.github.io/webdriver/webdriver-spec.html#find-element
  *
  * @param {String} selector selector to query the element
- * @return {Object} A WebElement JSON object for the located element.
- * @throws {NoSuchElement} if no element is found from the given selector
+ * @return {String} A WebElement JSON object for the located element.
+ *
  * @type protocol
  *
  */
 
 import findStrategy from '../helpers/findElementStrategy'
 import hasElementResult from '../helpers/hasElementResultHelper'
-import { W3C_ELEMENT_ID } from '../helpers/constants'
 import q from 'q'
 
 export default function element (selector) {
@@ -52,11 +51,11 @@ export default function element (selector) {
          * `element-6066-11e4-a52e-4f735466cecf`. Let's make sure both identifier
          * are supported.
          */
-        const elemValue = result.value.ELEMENT || result.value[W3C_ELEMENT_ID]
+        const elemValue = result.value.ELEMENT || result.value['element-6066-11e4-a52e-4f735466cecf']
         if (elemValue) {
             result.value = {
                 ELEMENT: elemValue,
-                [W3C_ELEMENT_ID]: elemValue
+                'element-6066-11e4-a52e-4f735466cecf': elemValue
             }
         }
 

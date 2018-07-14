@@ -38,7 +38,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var getCookie = function getCookie(name) {
     /*!
-     * parameter check
+     * paramter check
      */
     if (typeof name !== 'string') {
         name = null;

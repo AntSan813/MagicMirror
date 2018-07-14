@@ -23,15 +23,14 @@ var selectByVisibleText = function selectByVisibleText(selector, text) {
         /**
          * find option elem using xpath
          */
-        var formatted = `"${text.trim()}"`;
+        var formatted = '"' + text.trim() + '"';
 
         if (/"/.test(text)) {
             formatted = 'concat("' + text.trim().split('"').join('", \'"\', "') + '")'; // escape quotes
         }
-        /* eslint-disable no-irregular-whitespace */
-        var normalized = `[normalize-space(translate(., ' ', '')) = ${formatted}]`;
-        /* eslint-enable no-irregular-whitespace */
-        return _this.elementIdElement(res.value.ELEMENT, `./option${normalized}|./optgroup/option${normalized}`);
+
+        var normalized = '[normalize-space(.) = ' + formatted + ']';
+        return _this.elementIdElement(res.value.ELEMENT, './option' + normalized + '|./optgroup/option' + normalized);
     }).then(function (res) {
         /**
          * check if element was found and throw error if not
@@ -47,8 +46,7 @@ var selectByVisibleText = function selectByVisibleText(selector, text) {
     });
 }; /**
     *
-    * Select option with displayed text matching the argument.
-   
+    * Select option which's displayed text matches the argument.
     *
     * <example>
        :example.html

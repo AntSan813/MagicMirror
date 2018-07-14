@@ -21,8 +21,6 @@ npm install gulp-webdriver --save-dev
 You can run WebdriverIO locally running this simple task:
 
 ```js
-import webdriver from 'gulp-webdriver';
-
 gulp.task('test:e2e', function() {
     return gulp.src('wdio.conf.js').pipe(webdriver());
 });
@@ -34,8 +32,6 @@ You can find all available options [here](http://webdriver.io/guide/testrunner/g
 or by executing `$ wdio --help` (if you have WebdriverIO installed globally).
 
 ```js
-import webdriver from 'gulp-webdriver';
-
 gulp.task('test:e2e', function() {
     return gulp.src('wdio.conf.js').pipe(webdriver({
         logLevel: 'verbose',

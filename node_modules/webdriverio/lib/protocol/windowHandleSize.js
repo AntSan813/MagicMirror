@@ -30,7 +30,6 @@
  */
 
 import { ProtocolError } from '../utils/ErrorHandler'
-import { isUnknownCommand } from '../helpers/utilities'
 
 let windowHandleSize = function (windowHandle = 'current', size) {
     let data = {}
@@ -67,16 +66,12 @@ let windowHandleSize = function (windowHandle = 'current', size) {
         throw new ProtocolError('number or type of arguments don\'t agree with windowHandleSize protocol command')
     }
 
-    return this.requestHandler.create(requestOptions, data).catch((err) => {
+    return this.requestHandler.create(requestOptions, data).catch(() => {
         /**
          * use W3C path if old path failed
          */
-        if (isUnknownCommand(err)) {
-            requestOptions.path = '/session/:sessionId/window/rect'
-            return this.requestHandler.create(requestOptions, data)
-        }
-
-        throw err
+        requestOptions.path = '/session/:sessionId/window/rect'
+        return this.requestHandler.create(requestOptions, data)
     })
 }
 

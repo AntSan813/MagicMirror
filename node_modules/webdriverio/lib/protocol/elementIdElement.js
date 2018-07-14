@@ -16,7 +16,6 @@
 
 import { ProtocolError } from '../utils/ErrorHandler'
 import findStrategy from '../helpers/findElementStrategy'
-import { W3C_ELEMENT_ID } from '../helpers/constants'
 
 export default function elementIdElement (id, selector) {
     if (typeof id !== 'string' && typeof id !== 'number') {
@@ -35,10 +34,10 @@ export default function elementIdElement (id, selector) {
          * `element-6066-11e4-a52e-4f735466cecf`. Let's make sure both identifier
          * are supported.
          */
-        const elemValue = result.value.ELEMENT || result.value[W3C_ELEMENT_ID]
+        const elemValue = result.value.ELEMENT || result.value['element-6066-11e4-a52e-4f735466cecf']
         result.value = {
             ELEMENT: elemValue,
-            [W3C_ELEMENT_ID]: elemValue
+            'element-6066-11e4-a52e-4f735466cecf': elemValue
         }
 
         return result

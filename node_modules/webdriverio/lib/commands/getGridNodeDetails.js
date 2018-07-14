@@ -42,9 +42,12 @@ let getGridNodeDetails = function () {
 
             return Object.assign(details, session)
         })
-    ).catch((e) => {
+    )
+    .catch(e => {
         if (e.seleniumStack && e.seleniumStack.type === 'GridApiError') {
-            return { error: e.message }
+            return {
+                error: e.message
+            }
         }
     })
 }

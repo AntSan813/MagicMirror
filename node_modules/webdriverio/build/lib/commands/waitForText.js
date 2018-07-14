@@ -13,7 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  *
  * Wait for an element (selected by css selector) for the provided amount of
- * milliseconds to have text/content. If multiple elements get queried by a given
+ * milliseconds to have text/content. If multiple elements get queryied by given
  * selector, it returns true (or false if reverse flag is set) if at least one
  * element has text/content.
  *
@@ -67,7 +67,7 @@ var waitForText = function waitForText(selector, ms, reverse) {
     }
 
     var isReversed = reverse ? 'with' : 'without';
-    var errorMsg = `element ("${selector || this.lastResult.selector}") still ${isReversed} text after ${ms}ms`;
+    var errorMsg = 'element ("' + (selector || this.lastResult.selector) + '") still ' + isReversed + ' text after ' + ms + 'ms';
 
     return this.waitUntil(function () {
         return _this.getText(selector).then(function (text) {

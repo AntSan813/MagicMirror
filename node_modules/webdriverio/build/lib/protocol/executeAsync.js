@@ -28,15 +28,15 @@ function executeAsync() {
      * a function parameter, therefor we need to check if it starts with "function () {"
      */
     if (typeof script === 'function' || this.inMultibrowserMode && script.indexOf('function (') === 0) {
-        script = `return (${script}).apply(null, arguments)`;
+        script = 'return (' + script + ').apply(null, arguments)';
     }
 
-    return this.requestHandler.create('/session/:sessionId/execute_async', { script, args }).catch(function (err) {
+    return this.requestHandler.create('/session/:sessionId/execute_async', { script: script, args: args }).catch(function (err) {
         /**
          * jsonwire command not supported try webdriver endpoint
          */
         if (err.message.match(/did not match a known command/)) {
-            return _this.requestHandler.create('/session/:sessionId/execute/async', { script, args });
+            return _this.requestHandler.create('/session/:sessionId/execute/async', { script: script, args: args });
         }
 
         throw err;
@@ -63,7 +63,7 @@ function executeAsync() {
    * <example>
       :executeAsync.js
       it('should execute async JavaScript on the page', function () {
-          browser.timeouts('script', 5000);
+          browser.timeoutsAsyncScript(5000);
   
           var result = browser.executeAsync(function(a, b, c, d, done) {
               // browser context - you may access neither client nor console

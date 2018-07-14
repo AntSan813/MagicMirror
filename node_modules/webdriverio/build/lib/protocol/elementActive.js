@@ -27,7 +27,7 @@ function elementActive() {
         /**
          * jsonwire command not supported try webdriver endpoint
          */
-        if (err.message.match(/(did not match a known command|is not supported for command)/)) {
+        if (err.message.match(/did not match a known command/)) {
             requestOptions.method = 'GET';
             return _this.requestHandler.create(requestOptions);
         }

@@ -27,6 +27,6 @@ function longPressKeycode(keycode, metastate) {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/long_press_keycode',
         method: 'POST'
-    }, { keycode, metastate });
+    }, { keycode: keycode, metastate: metastate });
 }
 module.exports = exports['default'];

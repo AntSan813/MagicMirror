@@ -7,9 +7,9 @@ exports.default = elementIdLocationInView;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var _deprecationWarning = require('../helpers/deprecationWarning');
+var _depcrecationWarning = require('../helpers/depcrecationWarning');
 
-var _deprecationWarning2 = _interopRequireDefault(_deprecationWarning);
+var _depcrecationWarning2 = _interopRequireDefault(_depcrecationWarning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20,9 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * *Note:* This is considered an internal command and should only be used to determine
  * an element's location for correctly generating native events.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`elementIdRect`](http://webdriver.io/api/protocol/elementIdRect.html) command instead.
+ * Depcrecated command, please use `elementIdRect`.
  *
  * @param {String} ID ID of a WebElement JSON object to route the command to
  * @return {Object} The X and Y coordinates for the element (`{x:number, y:number}`)
@@ -38,7 +36,7 @@ function elementIdLocationInView(id) {
         throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with elementIdLocationInView protocol command');
     }
 
-    (0, _deprecationWarning2.default)('elementIdLocationInView', this.options.deprecationWarnings, 'This command is not part of the W3C WebDriver spec and won\'t be supported in ' + 'future versions of the driver. There is currently no known replacement for this ' + 'action. You can use the execute command to get a custom position of an element ' + 'using JavaScript.');
-    return this.requestHandler.create(`/session/:sessionId/element/${id}/location_in_view`);
+    (0, _depcrecationWarning2.default)('elementIdLocationInView');
+    return this.requestHandler.create('/session/:sessionId/element/' + id + '/location_in_view');
 }
 module.exports = exports['default'];

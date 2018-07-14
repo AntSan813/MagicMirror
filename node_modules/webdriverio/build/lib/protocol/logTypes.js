@@ -7,7 +7,7 @@ exports.default = logTypes;
 /**
  *
  * Get available log types. This command is not part of the official Webdriver specification.
- * Therefor the result can vary depending on the capability you are running the test.
+ * Therefor the result can vary depending on the capability you are runnint the test.
  * (Not part of the official Webdriver specification).
  *
  * <example>

@@ -1,9 +1,6 @@
 /**
  *
- * Protocol bindings for all geolocation operations.
- *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors.
+ * Protocol bindings for all geolocation operations. (Not part of the official Webdriver specification).
  *
  * <example>
     :location.js
@@ -21,11 +18,10 @@
  *
  * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlocation
  * @type protocol
- * @deprecated
  *
  */
 
-import deprecate from '../helpers/deprecationWarning'
+import depcrecateCommand from '../helpers/depcrecationWarning'
 
 export default function location (l) {
     let location = null
@@ -37,13 +33,7 @@ export default function location (l) {
         location = l
     }
 
-    deprecate(
-        'location',
-        this.options.deprecationWarnings,
-        'This command is not part of the W3C WebDriver spec and won\'t be supported in ' +
-        'future versions of the driver. There is currently no known replacement for this ' +
-        'action.'
-    )
+    depcrecateCommand('location')
 
     /**
      * get geo location

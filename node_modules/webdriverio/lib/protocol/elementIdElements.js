@@ -16,7 +16,6 @@
 
 import { ProtocolError } from '../utils/ErrorHandler'
 import findStrategy from '../helpers/findElementStrategy'
-import { W3C_ELEMENT_ID } from '../helpers/constants'
 
 export default function elementIdElements (id, selector) {
     if (typeof id !== 'string' && typeof id !== 'number') {
@@ -36,10 +35,10 @@ export default function elementIdElements (id, selector) {
          * are supported.
          */
         result.value = result.value.map((elem) => {
-            const elemValue = elem.ELEMENT || elem[W3C_ELEMENT_ID]
+            const elemValue = elem.ELEMENT || elem['element-6066-11e4-a52e-4f735466cecf']
             return {
                 ELEMENT: elemValue,
-                [W3C_ELEMENT_ID]: elemValue
+                'element-6066-11e4-a52e-4f735466cecf': elemValue
             }
         })
 

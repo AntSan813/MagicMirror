@@ -21,7 +21,6 @@ import q from 'q'
 
 import findStrategy from '../helpers/findElementStrategy'
 import hasElementResult from '../helpers/hasElementResultHelper'
-import { W3C_ELEMENT_ID } from '../helpers/constants'
 import { CommandError } from '../utils/ErrorHandler'
 
 let elements = function (selector) {
@@ -87,10 +86,10 @@ let elements = function (selector) {
          * are supported.
          */
         result.value = result.value.map((elem) => {
-            const elemValue = elem.ELEMENT || elem[W3C_ELEMENT_ID]
+            const elemValue = elem.ELEMENT || elem['element-6066-11e4-a52e-4f735466cecf']
             return {
                 ELEMENT: elemValue,
-                [W3C_ELEMENT_ID]: elemValue
+                'element-6066-11e4-a52e-4f735466cecf': elemValue
             }
         })
 

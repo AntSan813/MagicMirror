@@ -28,7 +28,7 @@ var moveToObject = function moveToObject(selector, xoffset, yoffset) {
 
             return _this.elementIdSize(res.value.ELEMENT).then(function (size) {
                 return _this.elementIdLocation(res.value.ELEMENT).then(function (location) {
-                    return { size, location };
+                    return { size: size, location: location };
                 });
             });
         }).then(function (res) {
@@ -56,7 +56,7 @@ var moveToObject = function moveToObject(selector, xoffset, yoffset) {
     });
 }; /**
     *
-    * Move the mouse by an offset of the specified element. If an element is provided but no
+    * Move the mouse by an offset of the specificed element. If an element is provided but no
     * offset, the mouse will be moved to the center of the element. If the element is not
     * visible, it will be scrolled into view.
     *

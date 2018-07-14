@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 /**
  *
- * Get source code of the page. This command won't work in mobile environments for native apps. If you are running
+ * Get source code of the page. This command won't work in mobile environments for native apps. If you running
  * hybrid tests make sure that you are in the webview before calling this command.
  *
  * <example>

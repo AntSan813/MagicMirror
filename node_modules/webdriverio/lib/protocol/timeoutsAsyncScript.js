@@ -4,9 +4,7 @@
  * by /session/:sessionId/execute_async are permitted to run before they are
  * aborted and a |Timeout| error is returned to the client.
  *
- * This command is deprecated and will be removed soon. Make sure you don't use it in your
- * automation/test scripts anymore to avoid errors. Please use the
- * [`timeouts`](http://webdriver.io/api/protocol/timeouts.html) command instead.
+ * Deprecated! Please use the `timeouts` command instead.
  *
  * @see https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidtimeoutsasync_script
  *
@@ -17,7 +15,7 @@
  */
 
 import { ProtocolError } from '../utils/ErrorHandler'
-import deprecate from '../helpers/deprecationWarning'
+import depcrecate from '../helpers/depcrecationWarning'
 
 export default function timeoutsAsyncScript (ms) {
     /*!
@@ -27,11 +25,6 @@ export default function timeoutsAsyncScript (ms) {
         throw new ProtocolError('number or type of arguments don\'t agree with timeoutsAsyncScript protocol command')
     }
 
-    deprecate(
-        'timeoutsAsyncScript',
-        this.options.deprecationWarnings,
-        'This command is not part of the W3C WebDriver spec and won\'t be supported in ' +
-        'future versions of the driver. It is recommended to use the timeout command for this.'
-    )
+    depcrecate('timeoutsAsyncScript')
     return this.requestHandler.create('/session/:sessionId/timeouts/async_script', { ms })
 }

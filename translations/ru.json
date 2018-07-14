@@ -7,7 +7,7 @@
 	"RUNNING": "Заканчивается через",
 	"EMPTY": "Нет предстоящих событий",
 
-	"WEEK": "Неделя",
+	"WEEK": "Неделя {weekNumber}",
 
 	"N": "С",
 	"NNE": "ССВ",
@@ -27,6 +27,6 @@
 	"NNW": "ССЗ",
 
 	"UPDATE_NOTIFICATION": "Есть обновление для MagicMirror².",
-	"UPDATE_NOTIFICATION_MODULE": "Есть обновление для MODULE_NAME модуля.",
-	"UPDATE_INFO": "Данная инсталляция позади BRANCH_NAME ветки на COMMIT_COUNT коммитов."
+	"UPDATE_NOTIFICATION_MODULE": "Есть обновление для {MODULE_NAME} модуля.",
+	"UPDATE_INFO": "Данная инсталляция позади {BRANCH_NAME} ветки на {COMMIT_COUNT} коммитов."
 }

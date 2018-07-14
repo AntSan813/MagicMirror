@@ -91,9 +91,7 @@ let debug = function (commandTimeout = 5000, enableStdout, enableLogging) {
         }, (e) => {
             commandIsRunning = false
             clearTimeout(timeout)
-            const commandError = new Error(e.message)
-            delete commandError.stack
-            return callback(commandError)
+            return callback(e)
         })
     }
 

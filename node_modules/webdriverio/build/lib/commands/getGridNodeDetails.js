@@ -58,7 +58,9 @@ var getGridNodeDetails = function getGridNodeDetails() {
         });
     }).catch(function (e) {
         if (e.seleniumStack && e.seleniumStack.type === 'GridApiError') {
-            return { error: e.message };
+            return {
+                error: e.message
+            };
         }
     });
 };

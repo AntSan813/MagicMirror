@@ -2,6 +2,83 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.1] - 2018-04-01
+
+### Fixed
+
+- Downgrade electron to 1.4.15 to solve the black screen issue.[#1243](https://github.com/MichMich/MagicMirror/issues/1243)
+
+## [2.3.0] - 2018-04-01
+
+### Added
+
+- Add new settings in compliments module: setting time intervals for morning and afternoon
+- Add system notification `MODULE_DOM_CREATED` for notifying each module when their Dom has been fully loaded.
+- Add types for module.
+- Implement Danger.js to notify contributors when CHANGELOG.md is missing in PR.
+- Allow to scroll in full page article view of default newsfeed module with gesture events from [MMM-Gestures](https://github.com/thobach/MMM-Gestures)
+- Changed 'compliments.js' - update DOM if remote compliments are loaded instead of waiting one updateInterval to show custom compliments
+- Automated unit tests utils, deprecated, translator, cloneObject(lockstrings)
+- Automated integration tests translations
+- Add advanced filtering to the excludedEvents configuration of the default calendar module
+- New currentweather module config option: `showFeelsLike`: Shows how it actually feels like. (wind chill or heat index)
+- New currentweather module config option: `useKMPHwind`: adds an option to see wind speed in Kmph instead of just m/s or Beaufort.
+- Add dc:date to parsing in newsfeed module, which allows parsing of more rss feeds.
+
+### Changed
+- Add link to GitHub repository which contains the respective Dockerfile.
+- Optimized automated unit tests cloneObject, cmpVersions
+- Update notifications use now translation templates instead of normal strings.
+- Yarn can be used now as an installation tool
+- Changed Electron dependency to v1.7.13.
+
+### Fixed
+- News article in fullscreen (iframe) is now shown in front of modules.
+- Forecast respects maxNumberOfDays regardless of endpoint.
+- Fix exception on translation of objects.
+
+## [2.2.2] - 2018-01-02
+
+### Added
+
+- Add missing `package-lock.json`.
+
+### Changed
+
+- Changed Electron dependency to v1.7.10.
+
+## [2.2.1] - 2018-01-01
+
+### Fixed
+- Fixed linting errors.
+
+## [2.2.0] - 2018-01-01
+
+**Note:** This update uses new dependencies. Please update using the following command: `git pull && npm install`
+
+### Changed
+- Calender week is now handled with a variable translation in order to move number language specific.
+- Reverted the Electron dependency back to 1.4.15 since newer version don't seem to work on the Raspberry Pi very well.
+
+### Added
+- Add option to use [Nunjucks](https://mozilla.github.io/nunjucks/) templates in modules. (See `helloworld` module as an example.)
+- Add Bulgarian translations for MagicMirror² and Alert module.
+- Add graceful shutdown of modules by calling `stop` function of each `node_helper` on SIGINT before exiting.
+- Link update subtext to Github diff of current version versus tracking branch.
+- Add Catalan translation.
+- Add ability to filter out newsfeed items based on prohibited words found in title (resolves #1071)
+- Add options to truncate description support of a feed in newsfeed module
+- Add reloadInterval option for particular feed in newsfeed module
+- Add no-cache entries of HTTP headers in newsfeed module (fetcher)
+- Add Czech translation.
+- Add option for decimal symbols other than the decimal point for temperature values in both default weather modules: WeatherForecast and CurrentWeather.
+
+### Fixed
+- Fixed issue with calendar module showing more than `maximumEntries` allows
+- WeatherForecast and CurrentWeather are now using HTTPS instead of HTTP
+- Correcting translation for Indonesian language
+- Fix issue where calendar icons wouldn't align correctly
+
 ## [2.1.3] - 2017-10-01
 
 **Note:** This update uses new dependencies. Please update using the following command: `git pull && npm install`
@@ -29,7 +106,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Changed 'default.js' - listen on all attached interfaces by default.
 - Add execution of `npm list` after the test are ran in Travis CI.
 - Change hooks for the vendors e2e tests.
-- Add log when clientonly failed on starting. 
+- Add log when clientonly failed on starting.
 - Add warning color when are using full ip whitelist.
 - Set version of the `express-ipfilter` on 0.3.1.
 

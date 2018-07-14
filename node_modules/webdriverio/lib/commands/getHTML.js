@@ -40,21 +40,7 @@ let getHTML = function (selector, includeSelectorTag) {
      */
     includeSelectorTag = typeof includeSelectorTag === 'boolean' ? includeSelectorTag : true
 
-    /**
-     * check if we already queried the element within a prior command, in these cases
-     * the selector attribute is null and the element can be recieved calling the
-     * `element` command again
-     */
-    let getHtmlResultPromise
-    if (selector === null) {
-        getHtmlResultPromise = this.elements(selector).then(
-            (res) => this.execute(getHTMLHelper, res.value, includeSelectorTag)
-        ).then((result) => result.value)
-    } else {
-        getHtmlResultPromise = this.selectorExecute(selector, getHTMLHelper, includeSelectorTag)
-    }
-
-    return getHtmlResultPromise.then((html) => {
+    return this.selectorExecute(selector, getHTMLHelper, includeSelectorTag).then((html) => {
         /**
          * throw NoSuchElement error if no element was found
          */
