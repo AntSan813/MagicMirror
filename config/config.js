@@ -9,13 +9,13 @@
  */
 
 var config = {
-	address: "localhost", // Address to listen on, can be:
+	address: "0.0.0.0", // Address to listen on, can be:
 	                      // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
 	                      // - another specific IPv4/6 to listen on a specific interface
 	                      // - "", "0.0.0.0", "::" to listen on any interface
 	                      // Default, when address config is left out, is "localhost"
 	port: 8080,
-	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"], // Set [] to allow all IP addresses
+	ipWhitelist: [],  //["127.0.0.1", "::ffff:127.0.0.1", "::1"], // Set [] to allow all IP addresses
 	                                                       // or add a specific IPv4 of 192.168.1.5 :
 	                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
 	                                                       // or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
@@ -87,6 +87,53 @@ var config = {
 				showPublishDate: true
 			}
 		},
+    {
+      module: 'MMM-NetworkConnection',
+      position: 'top_right',
+      config: {
+      }
+    },
+    {
+      module: 'MMM-Remote-Control',
+      // uncomment the following line to show the URL of the remote control on the mirror
+      position: 'bottom_left'
+      // you can hide this module afterwards from the remote control itself
+    },
+    {
+    	module: "MMM-cryptocurrency",
+    	position: "top_right",
+    	config: {
+    		currency: ['ethereum', 'bitcoin'],
+    		conversion: 'USD',
+    		showUSD: false,
+    		headers: ['change24h', 'change1h', 'change7d'],
+    		displayType: 'logoWithChanges',
+        coloredLogos: true,
+    		showGraphs: true
+    	}
+    },
+    {
+      module: 'MMM-Carousel',
+      position: 'bottom_bar', // Required only for navigation controls
+      config: {
+          transitionInterval: 10000,
+          ignoreModules: ['clock', 'alert'],
+          mode: 'slides',
+          showPageIndicators: true,
+          showPageControls: true,
+          slides: [
+              ['calendar', 'compliments', 'currentweather'],
+              ['weatherforecast', 'MMM-Trello', 'planetrise', 'newsfeed'],
+              ['MMM-fitbit']
+          ],
+          keyBindingsMode: "DEFAULT",
+          keyBindings: {
+              NextSlide: "ArrowRight",
+              PrevSlide: "ArrowLeft",
+              Slide0:    "Home"
+          }
+      }
+    }
 	]
 
 };
