@@ -39,13 +39,13 @@ var config = {
 		},
 		{
 			module: "calendar",
-			header: "US Holidays",
+			header: "Upcoming Events",
 			position: "top_left",
 			config: {
 				calendars: [
 					{
 						symbol: "calendar-check-o ",
-						url: "webcal://www.calendarlabs.com/templates/ical/US-Holidays.ics"
+						url: "https://calendar.google.com/calendar/ical/santosa4%40mailbox.winthrop.edu/public/basic.ics"
 					}
 				]
 			}
@@ -58,9 +58,11 @@ var config = {
 			module: "currentweather",
 			position: "top_right",
 			config: {
-				location: "New York",
-				locationID: "",  //ID from http://www.openweathermap.org/help/city_list.txt
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				location: "Rock Hill",
+				locationID: "4593142",  //ID from http://www.openweathermap.org/help/city_list.txt
+				appid: "86d4a892d3b19b114455325dc518c7b8",
+        units: "imperial",
+
 			}
 		},
 		{
@@ -68,9 +70,9 @@ var config = {
 			position: "top_right",
 			header: "Weather Forecast",
 			config: {
-				location: "New York",
-				locationID: "5128581",  //ID from http://www.openweathermap.org/help/city_list.txt
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				location: "Rock Hill",
+				locationID: "4593142",  //ID from http://www.openweathermap.org/help/city_list.txt
+				appid: "86d4a892d3b19b114455325dc518c7b8"
 			}
 		},
 		{
@@ -112,19 +114,28 @@ var config = {
     		showGraphs: true
     	}
     },
+
     {
+      module: 'MMM-GoogleTasks',
+      header: "Google Tasks",
+      position: "top_right",
+      config: {
+        listID: "MTM5MzUxMjcyNzAyMjI0Nzg4NzA6ODA1ODMxMzY0MzM5MTg5Njow",
+      }
+     },
+     {
       module: 'MMM-Carousel',
       position: 'bottom_bar', // Required only for navigation controls
       config: {
-          transitionInterval: 10000,
+          transitionInterval: 30000,
           ignoreModules: ['clock', 'alert'],
           mode: 'slides',
           showPageIndicators: true,
           showPageControls: true,
           slides: [
-              ['calendar', 'compliments', 'currentweather'],
-              ['weatherforecast', 'MMM-Trello', 'planetrise', 'newsfeed'],
-              ['MMM-fitbit']
+              ['calendar', 'compliments','MMM-GoogleTasks'],
+              ['weatherforecast', 'currentweather', 'newsfeed'],
+              ['MMM-cryptocurrency']
           ],
           keyBindingsMode: "DEFAULT",
           keyBindings: {
@@ -133,7 +144,7 @@ var config = {
               Slide0:    "Home"
           }
       }
-    }
+    },
 	]
 
 };
