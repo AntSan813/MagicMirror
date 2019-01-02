@@ -93,12 +93,12 @@ var config = {
       config: {
       }
     },
-//    {
-//      module: 'MMM-Remote-Control',
-//      // uncomment the following line to show the URL of the remote control on the mirror
-//      position: 'bottom_left'
-//      // you can hide this module afterwards from the remote control itself
-//    },
+    {
+      module: 'MMM-Remote-Control',
+      // uncomment the following line to show the URL of the remote control on the mirror
+      position: 'bottom_left'
+      // you can hide this module afterwards from the remote control itself
+    },
     {
     	module: "MMM-cryptocurrency",
     	position: "top_right",
