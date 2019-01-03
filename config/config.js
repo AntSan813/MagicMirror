@@ -133,7 +133,7 @@ var config = {
           showPageIndicators: true,
           showPageControls: true,
           slides: [
-              ['calendar', 'compliments','MMM-GoogleTasks'],
+              ['calendar', 'compliments','MMM-GoogleTasks','MMM-SlackAnnouncements'],
               ['weatherforecast', 'currentweather', 'newsfeed'],
               ['MMM-cryptocurrency']
           ],
@@ -145,6 +145,14 @@ var config = {
           }
       }
     },
+    {
+      module: 'MMM-SlackAnnouncements',
+      position: 'top_center',
+      config: {
+        channel: 'CF5KNP329',
+        slackToken: 'xoxp-515668778725-515362936979-514738473760-6680ebf7957df57c43af8962bf479ee8' // See 'Configuration options' for more information.
+      }
+    }
 	]
 
 };
