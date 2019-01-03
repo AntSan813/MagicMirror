@@ -124,31 +124,6 @@ var config = {
       }
      },
      {
-      module: 'MMM-Carousel',
-      position: 'bottom_bar', // Required only for navigation controls
-      config: {
-          transitionInterval: 30000,
-          ignoreModules: ['clock', 'alert'],
-          mode: 'slides',
-          showPageIndicators: true,
-          showPageControls: true,
-          slides: [
-              ['compliments'],
-              ['calendar','MMM-GoogleTasks','MMM-SlackAnnouncements'],
-              ['weatherforecast', 'currentweather', 'newsfeed'],
-              ['MMM-cryptocurrency'],
-              ['MMM-Globe'],
-              ['MMM-nasaastropic']
-          ],
-          keyBindingsMode: "DEFAULT",
-          keyBindings: {
-              NextSlide: "ArrowRight",
-              PrevSlide: "ArrowLeft",
-              Slide0:    "Home"
-          }
-      }
-    },
-    {
       module: 'MMM-SlackAnnouncements',
       position: 'top_center',
       config: {
@@ -175,7 +150,46 @@ var config = {
         header: 'NASA Astronomy Picture',
         maxlongedge: 300
       }
-    }
+    },
+    {
+      module: "MMM-NowPlayingOnSpotify",
+      position: "center",
+
+      config: {
+        clientID: "7f90bd2066f94351a6caf04a3e3114a3",
+        clientSecret: "6adaa569458c4876a25e1f45311018d8",
+        accessToken: "BQB9XNjd9O6GF6vcx1tDY-n_gWiJ03MR7gedpT-gqj7VSyun1MDst7KoRPvR-cmKPeS3ngCdFXuaySnF_n0h9BEV1q7IYNUGfTk7b5sJgV_3FHrZn25_bGW2mp1oYPpBbp_Hlbnz8AHCQoz8A8FcayjADn4",
+        refreshToken: "AQCVoLihs8p_25JqyfrD1X82oq3wffO8taueaWtm9ksGblqv7LRqB5HjKgRKsDAMXdClCrmsutqskhLcicuIkTDW2TNwHwwJGSlPfTouX8zCoOn_-mq2Dl2apkMYsw8yDPWX0A",
+        showCoverArt: true
+      }
+    },
+    {
+      module: 'MMM-Carousel',
+      position: 'bottom_bar', // Required only for navigation controls
+      config: {
+          transitionInterval: 30000,
+          ignoreModules: ['clock', 'alert'],
+          mode: 'slides',
+          showPageIndicators: true,
+          showPageControls: true,
+          slides: [
+              ['compliments'],
+              ['calendar','MMM-GoogleTasks','MMM-SlackAnnouncements'],
+              ['weatherforecast', 'currentweather', 'newsfeed'],
+              ['MMM-cryptocurrency'],
+              ['MMM-Globe'],
+              ['MMM-nasaastropic'],
+              ['MMM-NowPlayingOnSpotify']
+          ],
+          keyBindingsMode: "DEFAULT",
+          keyBindings: {
+              NextSlide: "ArrowRight",
+              PrevSlide: "ArrowLeft",
+              Slide0:    "Home"
+          }
+      }
+    },
+
 	]
 
 };
