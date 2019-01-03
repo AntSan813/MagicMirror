@@ -1,3 +1,44 @@
 [submodule "modules/MMM-RSS-FEED"]
 	path = modules/MMM-RSS-FEED
-	url = https://github.com/maxenxe/MMM-RSS-FEED.git
+  url = https://github.com/maxenxe/MMM-RSS-FEED.git
+
+[submodule "modules/MMM-Carousel"]
+	path = modules/MMM-Carousel
+	url = https://github.com/shbatm/MMM-Carousel.git
+
+[submodule "modules/MMM-cryptocurrency"]
+	path = modules/MMM-cryptocurrrency
+	url = https://github.com/matteodanelli/MMM-cryptocurrency.git
+
+[submodule "modules/MMM-GoogleTasks"]
+	path = modules/MMM-GoogleTasks
+	url = https://github.com/jgauth/MMM-GoogleTasks.git
+
+[submodule "modules/MMM-NetworkConnection"]
+	path = modules/MMM-NetworkConnection
+	url = https://github.com/slametps/MMM-NetworkConnection.git
+
+[submodule "modules/MMM-NowPlayingOnSpotify"]
+	path = modules/MMM-NowPlayingOnSpotify
+	url = https://github.com/raywo/MMM-NowPlayingOnSpotify.git
+
+[submodule "modules/MMM-Globe"]
+	path = modules/MMM-Globe
+	url = https://github.com/LukeSkywalker92/MMM-Globe.git
+
+[submodule "modules/MMM-RemoteControl"]
+	path = modules/MMM-RemoteControl
+	url = https://github.com/Jopyth/MMM-Remote-Control.git
+
+[submodule "modules/MMM-nasaastropic"]
+	path = modules/MMM-nasaastropic
+	url = https://github.com/nebulx29/MMM-nasaastropic.git
+
+[submodule "modules/MMM-SlackAnnouncements"]
+	path = modules/MMM-SlackAnnouncements
+	url = https://github.com/Monkeyanator/MMM-SlackAnnouncements.git
+
+[submodule "modules/MMM-Snow"]
+	path = modules/MMM-Snow
+	url = https://github.com/MichMich/MMM-Snow.git
+
