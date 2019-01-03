@@ -137,7 +137,8 @@ var config = {
               ['calendar','MMM-GoogleTasks','MMM-SlackAnnouncements'],
               ['weatherforecast', 'currentweather', 'newsfeed'],
               ['MMM-cryptocurrency'],
-              ['MMM-Globe']
+              ['MMM-Globe'],
+              ['MMM-nasaastropic']
           ],
           keyBindingsMode: "DEFAULT",
           keyBindings: {
@@ -152,7 +153,7 @@ var config = {
       position: 'top_center',
       config: {
         channel: 'CF5KNP329',
-        slackToken: 'xoxp-515668778725-515362936979-514738473760-6680ebf7957df57c43af8962bf479ee8' // See 'Configuration options' for more information.
+        slackToken: 'xoxp-515668778725-515362936979-514892401553-3a2cd192463a729cbb6a8b6701dcb65d' // See 'Configuration options' for more information.
       }
     },
     {
@@ -166,15 +167,15 @@ var config = {
 	    }
     },
     {
-      module: 'MMM-nasaastropic'
-      position: 'top_left',
+      module: 'MMM-nasaastropic',
+      position: 'center',
       config: {
         updateInterval: 6*60*60*1000,
         animationSpeed: 0,
         header: 'NASA Astronomy Picture',
         maxlongedge: 300
       }
-    },
+    }
 	]
 
 };
