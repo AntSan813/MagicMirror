@@ -133,9 +133,11 @@ var config = {
           showPageIndicators: true,
           showPageControls: true,
           slides: [
-              ['calendar', 'compliments','MMM-GoogleTasks','MMM-SlackAnnouncements'],
+              ['compliments'],
+              ['calendar','MMM-GoogleTasks','MMM-SlackAnnouncements'],
               ['weatherforecast', 'currentweather', 'newsfeed'],
-              ['MMM-cryptocurrency']
+              ['MMM-cryptocurrency'],
+              ['MMM-Globe']
           ],
           keyBindingsMode: "DEFAULT",
           keyBindings: {
@@ -152,7 +154,27 @@ var config = {
         channel: 'CF5KNP329',
         slackToken: 'xoxp-515668778725-515362936979-514738473760-6680ebf7957df57c43af8962bf479ee8' // See 'Configuration options' for more information.
       }
-    }
+    },
+    {
+	    module: 'MMM-Globe',
+    	position: 'center',
+    	config: {
+	    	style: 'geoColor',
+		    imageSize: 600,
+		    ownImagePath:'',
+	    	updateInterval: 10*60*1000
+	    }
+    },
+    {
+      module: 'MMM-nasaastropic'
+      position: 'top_left',
+      config: {
+        updateInterval: 6*60*60*1000,
+        animationSpeed: 0,
+        header: 'NASA Astronomy Picture',
+        maxlongedge: 300
+      }
+    },
 	]
 
 };
