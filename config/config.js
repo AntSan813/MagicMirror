@@ -52,7 +52,29 @@ var config = {
 		},
 		{
 			module: "compliments",
-			position: "lower_third"
+			position: "lower_third",
+      config: {
+        compliments: {
+          anytime: [
+            "Welcome to Winthrop University! You are currently in Thurmond Building!"
+          ],
+          morning: [
+            "Good morning!",
+            "Who needs coffee when you have your smile?",
+            "Go get em, Tiger!"
+          ],
+          afternoon: [
+            "Hitting your stride!",
+            "You are making a difference!",
+            "You're more fun than bubble wrap!"
+          ],
+          evening: [
+            "You made someone smile today, I know it.",
+            "You are making a difference.",
+            "The day was better for your efforts."
+          ]
+        }
+      }
 		},
 		{
 			module: "currentweather",
@@ -72,7 +94,8 @@ var config = {
 			config: {
 				location: "Rock Hill",
 				locationID: "4593142",  //ID from http://www.openweathermap.org/help/city_list.txt
-				appid: "86d4a892d3b19b114455325dc518c7b8"
+				appid: "86d4a892d3b19b114455325dc518c7b8",
+        units: "imperial"
 			}
 		},
 		{
@@ -164,11 +187,19 @@ var config = {
       }
     },
     {
+		  module: 'MMM-Snow',
+		  position: 'fullscreen_above',
+		  config: { // See 'Configuration options' for more information.
+			  flakeCount: 100,
+			  theme: "winter"			
+      }
+    },
+    {
       module: 'MMM-Carousel',
       position: 'bottom_bar', // Required only for navigation controls
       config: {
           transitionInterval: 30000,
-          ignoreModules: ['clock', 'alert'],
+          ignoreModules: ['clock', 'alert','MMM-Snow'],
           mode: 'slides',
           showPageIndicators: true,
           showPageControls: true,
