@@ -1,0 +1,3 @@
+[submodule "modules/MMM-RSS-FEED"]
+	path = modules/MMM-RSS-FEED
+	url = https://github.com/maxenxe/MMM-RSS-FEED.git
