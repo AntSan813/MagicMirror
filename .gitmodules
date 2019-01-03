@@ -7,7 +7,7 @@
 	url = https://github.com/shbatm/MMM-Carousel.git
 
 [submodule "modules/MMM-cryptocurrency"]
-	path = modules/MMM-cryptocurrrency
+	path = modules/MMM-cryptocurrency
 	url = https://github.com/matteodanelli/MMM-cryptocurrency.git
 
 [submodule "modules/MMM-GoogleTasks"]
@@ -26,8 +26,8 @@
 	path = modules/MMM-Globe
 	url = https://github.com/LukeSkywalker92/MMM-Globe.git
 
-[submodule "modules/MMM-RemoteControl"]
-	path = modules/MMM-RemoteControl
+[submodule "modules/MMM-Remote-Control"]
+	path = modules/MMM-Remote-Control
 	url = https://github.com/Jopyth/MMM-Remote-Control.git
 
 [submodule "modules/MMM-nasaastropic"]
