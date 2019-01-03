@@ -117,10 +117,10 @@ var config = {
 
     {
       module: 'MMM-GoogleTasks',
-      header: "Google Tasks",
+      header: "Tasks",
       position: "top_right",
       config: {
-        listID: "MTM5MzUxMjcyNzAyMjI0Nzg4NzA6ODA1ODMxMzY0MzM5MTg5Njow",
+        listID: "MTM5MzUxMjcyNzAyMjI0Nzg4NzA6ODA1ODMxMzY0MzM5MTg5Njow"
       }
      },
      {
