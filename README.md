@@ -1,5 +1,6 @@
 This open source project encapsulates multiple modules to tailor a custom made Magic Mirror for Winthrop University's business buiding.
 
+For the updated config.js file, please contact me @ sanant813@hotmail.com to obtain the file. Special keys are incorporated in the file so the file is currently on the .gitignore list
 
 Original project: https://github.com/MichMich/MagicMirror
 
